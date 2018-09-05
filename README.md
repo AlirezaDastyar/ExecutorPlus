@@ -95,8 +95,8 @@ public class FileSearcher implements Runnable {
 }
 
 ```
-In the above program there is alot of simlarity between `ExecutorPlus` and `ExecutorService` but one of key futures <br/>of
+In the above program there is a lot of similarity between `ExecutorPlus` and `ExecutorService` but one of key futures <br/>of
 `ExecutorPlus` API is `waitToFinish()` mentioned by `**** this line ****` comment.<br/>
 Yes there is something like that in `ExecutorService` called `awaitTermination()` but this method requiers a thread<br/> to call the `shutdown()` on `ExecutorService` object.<br/> In the above case how you could know when to call `shutdown()` ? of course there are other ways around ExecutorService. <br/>
-The main point is that `ExecutorPlus` provide more information about threads internal state.
-Read about these futures in `ExecutorPlus` [API documentation](https://github.com/AlirezaDastyar/SubDomainMapper/blob/master/src/main/java/space/dastyar/lib/executorplus/ExecutorPlus.java).
+The main point is that `ExecutorPlus` provide more information about threads internal state.<br/>
+Read about these futures in `ExecutorPlus` [API documentation](https://github.com/AlirezaDastyar/ExecutorPlus/blob/master/src/main/java/space/dastyar/lib/executorplus/ExecutorPlus.java).
