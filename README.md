@@ -2,7 +2,7 @@
 
 ## Introduction
 A simple implementation of java Executor interface which comes with more information and access on threads state than ExecutorService.
-> Note: This project is in alpha release so if you're interested,try to test and give some feedback.
+> Note: This project is in alpha release so if you're interested, try to test and give some feedback.
 
 ## Some use cases
 Imagin you are writing a multi-threaded file system search which
