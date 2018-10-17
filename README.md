@@ -1,12 +1,25 @@
 # ExecutorPlus ![Build status](https://img.shields.io/teamcity/codebetter/bt428.svg)
 
 ## Introduction
-A simple implementation of java Executor interface which comes with more information and access on threads state than ExecutorService.
+A simple implementation of Java `Executor` interface which comes with more information and access on threads state than `ExecutorService`.
 > Note: This project is in alpha release so if you're interested, try to test and give some feedback.
 
+## What does it offer?
+It offers almost all of the functionalities of `ExecutorService` and **more**.  
+Extra information comes from the internal state of threads which is achieved by using customized threads, so you won't be able use your own thread factory, instead you have access to more information.
+#### What are those extra information? 
+Extra information is about whether threads are busy or not.  
+Since you might not know exact number tasks or one may depend on
+one or more number of tasks, you won't be able to know whether 
+the submitted tasks are done or not, by using `ExecutorPlus` you would be able to
+know if `Executor` has done all of the submitted task, or block and wait for `Executor` to finish.  
+> Note: accessing to all of the extra information requires no extra operation such as `shutdown()` and Executor will be  usable until you want to.  
+
 ## Some use cases
-Imagin you are writing a multi-threaded file system search which
-looked like this:
+Imagine you are writing a multi-threaded file system search which consider each sub-directory as a new task and submit tasks to an Executor 
+and each match case will be stored in a list, is this case how could you know how many tasks are you dealing with? or when are all of them done?
+
+Our search code could looked like this:
 
 ```java
 import java.io.File;
@@ -18,14 +31,7 @@ import java.util.concurrent.Executors;
 import space.dastyar.lib.executorplus.ExecutorPlus;
 import space.dastyar.lib.executorplus.ExecutorPlusFactory;
 
-/**
-* The way program works is that the
-* searcher obeject start listing files in
-* the given path and if its a match file adds
-* it to the filePaths and if its a directory
-* create new search task and subimt it to the execute
-* method of Executor object.
-*/
+
 public class FileSearcher implements Runnable {
 
     private Executor executor;
@@ -45,7 +51,16 @@ public class FileSearcher implements Runnable {
         this.search = search;
         this.filePaths = filesPath;
     }
-
+	
+    /**
+    * Search method searches between files and deal with sub-dirs 
+    * like a recursive search but insted of calling it self again, 
+    * creates a task and submit the to the executor.
+    * so each sub-dir to search will be a task for excutor to search.
+	* 
+    * @param path main directory to search
+    * @param search the file name to search 
+    **/
     public void search(String path, String search) {
         this.search = search;
         File[] files = new File(path).listFiles();
@@ -95,8 +110,13 @@ public class FileSearcher implements Runnable {
 }
 
 ```
+#### How does the `ExecutorPlus` helps?
 In the above program there is a lot of similarity between `ExecutorPlus` and `ExecutorService` but one of key futures <br/>of
-`ExecutorPlus` API is `waitToFinish()` mentioned by `**** this line ****` comment.<br/>
-Yes there is something like that in `ExecutorService` called `awaitTermination()` but this method requiers a thread<br/> to call the `shutdown()` on `ExecutorService` object.<br/> In the above case how you could know when to call `shutdown()` ? of course there are other ways around ExecutorService. <br/>
-The main point is that `ExecutorPlus` provide more information about threads internal state.<br/>
-Read about these futures in `ExecutorPlus` [API documentation](https://github.com/AlirezaDastyar/ExecutorPlus/blob/master/src/main/java/space/dastyar/lib/executorplus/ExecutorPlus.java).
+`ExecutorPlus` API is `waitToFinish()` method which is marked by `**** this line ****` comment.<br/>
+Yes there is something like that in `ExecutorService` called `awaitTermination()` but this method requires a thread<br/> to call the `shutdown()` on `ExecutorService` object.<br/> In the above case how you could know when to call `shutdown()` ? or what if you still need the `Executor`? of course there are other ways around `ExecutorService`. always there is a way but does is worth the complexity? <br/>
+`ExecutorPlus` offers a lot at low cost and the main point is that provide more information about threads internal state.<br/>
+## Documentation 
+The main interfaces of `ExecutorPlus` are well documented, and if know how to work with `ExecutorService` you are good to go but **keep in mind** that while `ExecutorPlus` and `ExecutorService` share a most of their concepts, **they have different implementations so checkout the documentation before using any method or future.**
+### Main interfaces
+`ExecutorPlus` is what you are going to work with (Equivalent of `ExecutorService`) [API documentation](https://github.com/AlirezaDastyar/ExecutorPlus/blob/master/src/main/java/space/dastyar/lib/executorplus/ExecutorPlus.java).  
+`ExecutorPlusFactory` is main way of instantiation of `ExecutorPlus`(Equivalent of `Executors`) [API documentation](https://github.com/AlirezaDastyar/ExecutorPlus/blob/master/src/main/java/space/dastyar/lib/executorplus/ExecutorPlusFactory.java).  
