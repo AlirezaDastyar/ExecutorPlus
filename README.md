@@ -114,9 +114,9 @@ public class FileSearcher implements Runnable {
 In the above program there is a lot of similarity between `ExecutorPlus` and `ExecutorService` but one of key futures <br/>of
 `ExecutorPlus` API is `waitToFinish()` method which is marked by `**** this line ****` comment.<br/>
 Yes there is something like that in `ExecutorService` called `awaitTermination()` but this method requires a thread<br/> to call the `shutdown()` on `ExecutorService` object.<br/> In the above case how you could know when to call `shutdown()` ? or what if you still need the `Executor`? of course there are other ways around `ExecutorService`. always there is a way but does is worth the complexity? <br/>
-`ExecutorPlus` offers a lot at low cost and the main point is that provide more information about threads internal state.<br/>
+`ExecutorPlus` offers a lot at low cost and the main future is that it provide more information about threads internal state.<br/>
 ## Documentation 
-The main interfaces of `ExecutorPlus` are well documented, and if know how to work with `ExecutorService` you are good to go but **keep in mind** that while `ExecutorPlus` and `ExecutorService` share a most of their concepts, **they have different implementations so checkout the documentation before using any method or future.**
+The main interfaces of `ExecutorPlus` are well documented, and if know how to work with `ExecutorService` you are good to go but **keep in mind** that while `ExecutorPlus` and `ExecutorService` share most of their concepts, **they have different implementations so checkout the documentation before using any method or future.**
 ### Main interfaces
 `ExecutorPlus` is what you are going to work with (Equivalent of `ExecutorService`) [API documentation](https://github.com/AlirezaDastyar/ExecutorPlus/blob/master/src/main/java/space/dastyar/lib/executorplus/ExecutorPlus.java).  
 `ExecutorPlusFactory` is main way of instantiation of `ExecutorPlus`(Equivalent of `Executors`) [API documentation](https://github.com/AlirezaDastyar/ExecutorPlus/blob/master/src/main/java/space/dastyar/lib/executorplus/ExecutorPlusFactory.java).  
