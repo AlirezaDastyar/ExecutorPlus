@@ -1,6 +1,6 @@
 # ExecutorPlus ![Build status](https://img.shields.io/teamcity/codebetter/bt428.svg)
 
-## Introduction
+## Introduction.
 A simple implementation of Java `Executor` interface which comes with more information and access on threads state than `ExecutorService`.
 > Note: This project is in alpha release so if you're interested, try to test and give some feedback.
 
@@ -15,7 +15,7 @@ the submitted tasks are done or not, by using `ExecutorPlus` you would be able t
 know if `Executor` has done all of the submitted task, or block and wait for `Executor` to finish.  
 > Note: accessing to all of the extra information requires no extra operation such as `shutdown()` and Executor will be  usable until you want to.  
 
-## Some use cases
+## Some use cases.
 Imagine you are writing a multi-threaded file system search which consider each sub-directory as a new task and submit tasks to an Executor 
 and each match case will be stored in a list, is this case how could you know how many tasks are you dealing with? or when are all of them done?
 
@@ -115,8 +115,8 @@ In the above program there is a lot of similarity between `ExecutorPlus` and `Ex
 `ExecutorPlus` API is `waitToFinish()` method which is marked by `**** this line ****` comment.<br/>
 Yes there is something like that in `ExecutorService` called `awaitTermination()` but this method requires a thread<br/> to call the `shutdown()` on `ExecutorService` object.<br/> In the above case how you could know when to call `shutdown()` ? or what if you still need the `Executor`? of course there are other ways around `ExecutorService`. always there is a way but does is worth the complexity? <br/>
 `ExecutorPlus` offers a lot at low cost and the main future is that it provide more information about threads internal state.<br/>
-## Documentation 
-The main interfaces of `ExecutorPlus` are well documented, and if know how to work with `ExecutorService` you are good to go but **keep in mind** that while `ExecutorPlus` and `ExecutorService` share most of their concepts, **they have different implementations so checkout the documentation before using any method or future.**
+## Documentation.
+The main interfaces of `ExecutorPlus` are well documented, and if know how to work with `ExecutorService` you are good to go but **keep in mind** that while `ExecutorPlus` and `ExecutorService` share most of their concepts, **they have different implementations so checkout the documentation before using any method or feature.**
 ### Main interfaces
 `ExecutorPlus` is what you are going to work with (Equivalent of `ExecutorService`) [API documentation](https://github.com/AlirezaDastyar/ExecutorPlus/blob/master/src/main/java/space/dastyar/lib/executorplus/ExecutorPlus.java).  
 `ExecutorPlusFactory` is main way of instantiation of `ExecutorPlus`(Equivalent of `Executors`) [API documentation](https://github.com/AlirezaDastyar/ExecutorPlus/blob/master/src/main/java/space/dastyar/lib/executorplus/ExecutorPlusFactory.java).  
