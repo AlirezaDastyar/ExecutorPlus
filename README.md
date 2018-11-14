@@ -55,9 +55,9 @@ public class FileSearcher implements Runnable {
     /**
     * Search method searches between files and deal with sub-dirs 
     * like a recursive search but insted of calling it self again, 
-    * creates a task and submit the to the executor.
+    * creates a task and submits it to the executor.
     * so each sub-dir to search will be a task for excutor to search.
-	* 
+    * 
     * @param path main directory to search
     * @param search the file name to search 
     **/
