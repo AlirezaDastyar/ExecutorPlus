@@ -1,4 +1,4 @@
-# ExecutorPlus ![Build status](https://img.shields.io/teamcity/codebetter/bt428.svg)
+# ExecutorPlus ![Build status](https://raw.githubusercontent.com/dwyl/repo-badges/master/highresPNGs/build-passing.png)
 
 ## Introduction.
 A simple implementation of Java `Executor` interface which comes with more information and access on threads state than `ExecutorService`.
